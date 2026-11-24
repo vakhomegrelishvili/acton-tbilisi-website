@@ -64,7 +64,8 @@ a.tag:hover { text-decoration: underline; }
 /* position+z-index keep the bar under the descenders of the line above (the heading isolates the stacking). */
 .display, .hl-host { isolation: isolate; }
 .hl { position: relative; z-index: -1; background: var(--color-hl); color: var(--color-navy); padding: 0 .1em; border-radius: .1em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-.bg-cyan .hl { background: var(--color-white); }
+/* White bar on cyan: shorter than the line, so it never touches the line above on two-line headings. */
+.bg-cyan .hl { background: linear-gradient(var(--color-white), var(--color-white)) 0 70% / 100% 74% no-repeat; }
 /* Small coloured words (dates, little labels) */
 .accent { color: var(--color-blue); }
 .bg-navy .accent { color: var(--color-hl); }

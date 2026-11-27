@@ -4,6 +4,7 @@ titleAccent: "\u10e9\u10d5\u10d4\u10dc\u10d8 \u10e8\u10d4\u10d7\u10d0\u10dc\u10e
 description: "\u10e0\u10dd\u10d3\u10d8\u10e1 \u10d5\u10d8\u10e7\u10d4\u10dc\u10d4\u10d1\u10d7 \u10d4\u10d9\u10e0\u10d0\u10dc\u10e1 \u10d3\u10d0 \u10e0\u10dd\u10d3\u10d8\u10e1 \u10d0\u10e0\u10d0, \u10d3\u10d0 \u10e0\u10d0\u10e2\u10dd\u10db \u10e0\u10e9\u10d4\u10d1\u10d0 \u10e2\u10d4\u10da\u10d4\u10e4\u10dd\u10dc\u10d8 \u10e9\u10d0\u10dc\u10d7\u10d0\u10e8\u10d8 \u10db\u10d7\u10d4\u10da\u10d8 \u10d3\u10e6\u10d4."
 date: 2026-10-03
 author: giorgi-metreveli   # file name in src/content/team/ka/
+draft: true           # sample text: hidden until the author approves it
 topics: [parents]
 cover: teen-seller
 placeholder: true  # sample article from the design; replace with a real story

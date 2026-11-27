@@ -19,8 +19,13 @@ const topicTag = { fairness: 'tag--red', science: 'tag--teal', money: 'tag--gold
 const n = String(archive.length);
 ---
 <BaseLayout title={p.seo.title} description={p.seo.description} ogPhoto="exhibition-talk">
-  <PageHero slot="hero" label={p.hero.label} title={p.hero.title.replaceAll('{n}', n)} accent={p.hero.accent} lead={p.hero.lead} />
+  {questions.length === 0 ? (
+    <PageHero slot="hero" label={p.hero.label} title={p.empty.title} accent={p.empty.accent} lead={p.empty.lead} />
+  ) : (
+    <PageHero slot="hero" label={p.hero.label} title={p.hero.title.replaceAll('{n}', n)} accent={p.hero.accent} lead={p.hero.lead} />
+  )}
 
+  {questions.length > 0 && (
   <section id="archive" class="bg-sky sec">
     <div class="wrap stack" style="--stack-gap: 28px" data-archive>
       <div class="row" style="--row-gap: 8px" role="group">
@@ -47,6 +52,7 @@ const n = String(archive.length);
       </div>
     </div>
   </section>
+  )}
 
 
   <CtaBand title={p.cta.title} accent={p.cta.accent} button={p.cta.button} />

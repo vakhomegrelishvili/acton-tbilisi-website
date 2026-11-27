@@ -194,6 +194,8 @@ const questionsPage = defineCollection({
   schema: z.object({
     seo: z.object({ title: z.string(), description: z.string() }),
     hero: z.object({ label: z.string(), title: z.string(), accent: z.string(), lead: z.string() }),
+    /** Shown instead of the archive while there are no questions yet. */
+    empty: z.object({ title: z.string(), accent: z.string(), lead: z.string() }),
     topics: z.record(z.string(), z.string()),
     cta: z.object({ title: z.string(), accent: z.string(), button: z.string() }),
   }),

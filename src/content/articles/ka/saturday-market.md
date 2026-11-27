@@ -5,6 +5,7 @@ description: "8–14 წლის ბავშვებმა თავად �
 date: 2026-10-31
 cover: market-stall
 author: marika-verulidze   # file name in src/content/team/ka/
+draft: true           # sample text: hidden until the author approves it
 topics: [clubs, life]
 placeholder: true  # example post written to show the format; replace with a real story
 ---

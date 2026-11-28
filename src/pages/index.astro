@@ -11,6 +11,7 @@ import Honest from '@/components/home/Honest.astro';
 import StudioFinder from '@/components/home/StudioFinder.astro';
 import DaySection from '@/components/home/DaySection.astro';
 import Clubs from '@/components/home/Clubs.astro';
+import PhilosophyTeaser from '@/components/home/PhilosophyTeaser.astro';
 import ProgressSection from '@/components/home/ProgressSection.astro';
 import FitCheck from '@/components/home/FitCheck.astro';
 import Videos from '@/components/home/Videos.astro';
@@ -42,6 +43,7 @@ const num = (k: string) => String(visible.indexOf(k) + 1).padStart(2, '0');
   <DaySection num={num('day')} />
   <Clubs />
   {show.progress && <ProgressSection num={num('progress')} />}
+  <PhilosophyTeaser />
   <FitCheck num={num('fit')} />
   {show.videos && <Videos num={num('videos')} />}
   {show.testimonials && <Testimonials num={num('testimonials')} />}

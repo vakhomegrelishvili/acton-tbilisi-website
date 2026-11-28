@@ -155,6 +155,8 @@ const homePage = defineCollection({
     }),
     faqPreview: z.object({ label: z.string(), allLink: z.string() }),
     /** Homepage clubs section (after "day"). Club names, taglines and icons come from the clubs collection. */
+    /** Short block linking to /philosophy (between the daily schedule/clubs and the fit check). */
+    philosophy: z.object({ title: z.string(), text: z.string(), link: z.string(), href: z.string().default('/philosophy') }),
     clubs: z.object({
       kicker: z.string(),
       title: z.string(),
@@ -210,6 +212,18 @@ const faqPage = defineCollection({
     hero: z.object({ label: z.string(), title: z.string(), accent: z.string(), after: z.string().optional(), lead: z.string() }),
     categories: z.record(z.string(), z.string()),
     cta: z.object({ title: z.string(), accent: z.string(), button: z.string() }),
+  }),
+});
+
+/** Educational philosophy page (/philosophy): frontmatter = page bits, body = the text. */
+const philosophyPage = defineCollection({
+  loader: glob({ pattern: '**/philosophy.md', base: './src/content/pages' }),
+  schema: z.object({
+    seo: z.object({ title: z.string(), description: z.string() }),
+    label: z.string(),
+    title: z.string(),
+    accent: z.string().optional(),
+    cta: z.object({ title: z.string(), text: z.string(), button: z.string(), href: z.string().default('/#join') }),
   }),
 });
 
@@ -486,4 +500,4 @@ const photos = defineCollection({
   }),
 });
 
-export const collections = { settings, homePage, aboutPage, faqPage, questionsPage, clubsPage, clubs, studios, faq, questions, team, testimonials, articles, articlesPage, photos };
+export const collections = { settings, homePage, aboutPage, faqPage, questionsPage, philosophyPage, clubsPage, clubs, studios, faq, questions, team, testimonials, articles, articlesPage, photos };

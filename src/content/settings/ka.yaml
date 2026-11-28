@@ -30,6 +30,8 @@ nextExhibition:
 nav:
   - label: "ჩვენ შესახებ"
     href: "/about"
+  - label: "ფილოსოფია"
+    href: "/philosophy"
   - label: "კლუბები"
     href: "/clubs"
   - label: "ერთი დღე"

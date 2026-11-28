@@ -1,0 +1,17 @@
+---
+/** Short, calm text block linking to /philosophy. Text: pages/ka/home.yaml → philosophy. */
+import { getPage } from '@/lib/content';
+const { philosophy: p } = await getPage('homePage');
+---
+<section class="wrap sec">
+  <div class="stack phil" style="--stack-gap: 16px">
+    <h2 class="display h2 phil__t">{p.title}</h2>
+    <p class="lead phil__p">{p.text}</p>
+    <a class="phil__a" href={p.href}>{p.link}</a>
+  </div>
+</section>
+<style>
+  .phil { max-width: 740px; }
+  .phil__p { max-width: none; line-height: 1.7; }
+  .phil__a { font-weight: 800; color: var(--color-navy); text-decoration: underline; text-underline-offset: 4px; }
+</style>

@@ -18,6 +18,13 @@ export async function getSettings(lang: Lang = defaultLang) {
 }
 
 type PageKey = 'homePage' | 'aboutPage' | 'faqPage' | 'questionsPage' | 'articlesPage' | 'clubsPage';
+
+/** The philosophy page entry (frontmatter + markdown body), for render(). */
+export async function getPhilosophy(lang: Lang = defaultLang) {
+  const entry = await getEntry('philosophyPage', `${lang}/philosophy`);
+  if (!entry) throw new Error(`Missing src/content/pages/${lang}/philosophy.md`);
+  return entry;
+}
 export async function getPage<C extends PageKey>(collection: C, lang: Lang = defaultLang): Promise<CollectionEntry<C>['data']> {
   const name = { homePage: 'home', aboutPage: 'about', faqPage: 'faq', questionsPage: 'questions', articlesPage: 'articles', clubsPage: 'clubs' }[collection];
   const entry = (await getEntry(collection as PageKey, `${lang}/${name}`)) as CollectionEntry<C> | undefined;

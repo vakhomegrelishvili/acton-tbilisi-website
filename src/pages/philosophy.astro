@@ -1,0 +1,38 @@
+---
+/**
+ * EDUCATIONAL PHILOSOPHY (საგანმანათლებლო ფილოსოფია). Text: src/content/pages/ka/philosophy.md
+ * (frontmatter = SEO, heading, CTA; body = the page text with ## sections). Reading width ≈ 720px.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import Button from '@/components/ui/Button.astro';
+import { render } from 'astro:content';
+import { getPhilosophy } from '@/lib/content';
+
+const entry = await getPhilosophy();
+const p = entry.data;
+const { Content } = await render(entry);
+---
+<BaseLayout title={p.seo.title} description={p.seo.description}>
+  <PageHero slot="hero" label={p.label} title={p.title} accent={p.accent} />
+
+  <section class="wrap sec">
+    <div class="prose phprose"><Content /></div>
+  </section>
+
+  <section class="bg-cyan">
+    <div class="wrap sec stack phcta" style="--stack-gap: 20px">
+      <h2 class="display h2">{p.cta.title}</h2>
+      <p class="phcta__t">{p.cta.text}</p>
+      <div><Button href={p.cta.href} size="lg">{p.cta.button}</Button></div>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .phprose { line-height: 1.75; }
+  .phprose :global(h2) { line-height: 1.2; margin-top: 56px; }
+  .phprose :global(ul li::marker) { color: var(--color-blue); }
+  .phprose :global(strong) { color: var(--color-navy); }
+  .phcta { max-width: 820px; }
+  .phcta__t { color: var(--color-navy); line-height: 1.7; }
+</style>

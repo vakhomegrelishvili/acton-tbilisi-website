@@ -50,6 +50,8 @@ a.tag:hover { text-decoration: underline; }
 
 /* Giant decorative "?" on cyan bands (aria-hidden) */
 .qmark-band { position: relative; overflow: hidden; }
+/* Calm page top (no cyan band, no big "?"), for editorial pages like /philosophy. */
+.top--calm { background: var(--color-bg); border-bottom: 1px solid var(--color-line); }
 .qmark { position: absolute; font-weight: var(--weight-display); color: var(--color-qmark); line-height: 1; pointer-events: none; user-select: none; font-size: clamp(340px, 46vw, 560px); right: -20px; top: clamp(-140px, -9vw, -40px); }
 .qmark--big { font-size: clamp(340px, 52vw, 720px); right: -40px; top: clamp(-160px, -10vw, -40px); }
 .qmark-band > :not(.qmark) { position: relative; }

@@ -44,7 +44,7 @@ Homepage sections can be switched off with `hidden: true` (e.g. `progress`, `vid
 `seo`, `hero`, `categories` (id → Georgian name), `cta`.
 
 ### `pages/ka/philosophy.md` — educational philosophy page (/philosophy)
-Frontmatter: `seo`, `label`, `title`, `accent`, `cta` (`title`, `text`, `button`, `href`). Body = the page text (`##` = sections). The homepage block linking here is `home.yaml → philosophy` (`title`, `text`, `link`).
+Frontmatter: `seo`, `label`, `title`, `cta` (`title`, `text`, `button`, `href`). Body = the page text (`##` = sections); the bullet list and a `<div class="pillars">…</div>` block (blank lines inside) are shown as calm cards. The page uses `BaseLayout calmTop` (white top, no cyan band). The homepage block linking here is `home.yaml → philosophy` (`title`, `text`, `link`).
 
 ### `pages/ka/questions.yaml` — weekly-question archive page (/questions)
 `seo`, `hero` (`title` may contain `{n}` = number of archived questions), `topics` (id → name), `cta`.

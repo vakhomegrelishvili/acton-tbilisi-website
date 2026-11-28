@@ -1,10 +1,11 @@
 ---
 /**
  * EDUCATIONAL PHILOSOPHY (საგანმანათლებლო ფილოსოფია). Text: src/content/pages/ka/philosophy.md
- * (frontmatter = SEO, heading, CTA; body = the page text with ## sections). Reading width ≈ 720px.
+ * (frontmatter = SEO, heading, CTA; body = the page text with ## sections).
+ * Calm editorial layout: white page top (no cyan band), one centred reading column of 720px,
+ * the list and the three "pillars" as quiet cards with a thin left line, a navy CTA at the end.
  */
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import PageHero from '@/components/shared/PageHero.astro';
 import Button from '@/components/ui/Button.astro';
 import { render } from 'astro:content';
 import { getPhilosophy } from '@/lib/content';
@@ -13,26 +14,54 @@ const entry = await getPhilosophy();
 const p = entry.data;
 const { Content } = await render(entry);
 ---
-<BaseLayout title={p.seo.title} description={p.seo.description}>
-  <PageHero slot="hero" label={p.label} title={p.title} accent={p.accent} />
+<BaseLayout title={p.seo.title} description={p.seo.description} calmTop>
+  <article class="wrap phil">
+    <header class="phil__head">
+      <p class="phil__label">{p.label}</p>
+      <h1 class="display phil__h">{p.title}</h1>
+    </header>
+    <div class="phil__body"><Content /></div>
+  </article>
 
-  <section class="wrap sec">
-    <div class="prose phprose"><Content /></div>
-  </section>
-
-  <section class="bg-cyan">
-    <div class="wrap sec stack phcta" style="--stack-gap: 20px">
-      <h2 class="display h2">{p.cta.title}</h2>
+  <section class="bg-navy">
+    <div class="wrap phcta">
+      <h2 class="display phcta__h">{p.cta.title}</h2>
       <p class="phcta__t">{p.cta.text}</p>
-      <div><Button href={p.cta.href} size="lg">{p.cta.button}</Button></div>
+      <div><Button href={p.cta.href} size="lg" variant="light">{p.cta.button}</Button></div>
     </div>
   </section>
 </BaseLayout>
 <style>
-  .phprose { line-height: 1.75; }
-  .phprose :global(h2) { line-height: 1.2; margin-top: 56px; }
-  .phprose :global(ul li::marker) { color: var(--color-blue); }
-  .phprose :global(strong) { color: var(--color-navy); }
-  .phcta { max-width: 820px; }
-  .phcta__t { color: var(--color-navy); line-height: 1.7; }
+  .phil { padding-top: 40px; padding-bottom: 88px; }
+  .phil__head, .phil__body { max-width: 720px; margin-inline: auto; }
+  .phil__head { padding-bottom: 28px; margin-bottom: 32px; border-bottom: 1px solid var(--color-line); }
+  .phil__label { font-size: var(--text-sm); font-weight: 700; color: var(--color-blue); margin: 0 0 12px; }
+  .phil__h { font-size: var(--text-h1-article); line-height: 1.18; color: var(--color-navy); margin: 0; }
+
+  .phil__body { font-size: var(--text-base); line-height: 1.8; color: var(--color-ink); }
+  .phil__body :global(p) { margin: 0; }
+  .phil__body :global(* + p), .phil__body :global(* + ul), .phil__body :global(* + div) { margin-top: 1.15em; }
+  .phil__body :global(h2) { font-weight: var(--weight-display); color: var(--color-navy); font-size: var(--text-h3); line-height: 1.3; margin: 56px 0 0; }
+  .phil__body :global(h2 + *) { margin-top: 16px; }
+  .phil__body :global(strong) { color: var(--color-navy); }
+
+  /* The list and the pillars: quiet cards with a thin left line. */
+  .phil__body :global(ul) { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .phil__body :global(ul li), .phil__body :global(.pillars p) {
+    background: var(--color-bg-sky); border-left: 3px solid var(--color-blue); border-radius: 0 var(--radius-card) var(--radius-card) 0;
+    padding: 18px 22px; margin: 0;
+  }
+  .phil__body :global(.pillars) { display: flex; flex-direction: column; gap: 14px; }
+  .phil__body :global(.pillars p + p) { margin-top: 0; }
+  .phil__body :global(.pillars strong) { display: block; margin-bottom: 4px; }
+  .phil__body :global(ul li strong) { display: block; margin-bottom: 4px; }
+
+  .phcta { padding-top: 64px; padding-bottom: 64px; max-width: 760px; display: flex; flex-direction: column; gap: 18px; }
+  .phcta__h { font-size: var(--text-h3); line-height: 1.35; color: var(--color-white); margin: 0; }
+  .phcta__t { color: var(--color-white); line-height: 1.75; margin: 0; opacity: .9; }
+  @media (max-width: 860px) {
+    .phil { padding-top: 20px; padding-bottom: 56px; }
+    .phil__body :global(h2) { margin-top: 44px; }
+    .phil__body :global(ul li), .phil__body :global(.pillars p) { padding: 16px 18px; }
+  }
 </style>

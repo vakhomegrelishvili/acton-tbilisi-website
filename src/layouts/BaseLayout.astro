@@ -15,9 +15,9 @@ import { getSettings, getPhoto } from '@/lib/content';
 import { getImage } from 'astro:assets';
 import { t } from '@/i18n/ui';
 
-interface Props { title?: string; description?: string; ogPhoto?: string; noindex?: boolean; type?: 'website' | 'article'; /** homepage uses the larger "?" shape */ bigQmark?: boolean }
+interface Props { title?: string; description?: string; ogPhoto?: string; noindex?: boolean; type?: 'website' | 'article'; /** homepage uses the larger "?" shape */ bigQmark?: boolean; /** white page top, no cyan band or "?" (editorial pages) */ calmTop?: boolean }
 const s = await getSettings();
-const { title = s.seo.title, description = s.seo.description, ogPhoto = 'studio-girl', noindex = false, type = 'website', bigQmark = false } = Astro.props;
+const { title = s.seo.title, description = s.seo.description, ogPhoto = 'studio-girl', noindex = false, type = 'website', bigQmark = false, calmTop = false } = Astro.props;
 const ui = t();
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const og = await getImage({ src: (await getPhoto(ogPhoto)).src, width: 1200, format: 'jpg' });
@@ -64,8 +64,8 @@ const jsonLd = {
   <body class:list={{ 'show-placeholders': showPlaceholders }}>
     <a class="skip-link" href="#main">{ui.skipToContent}</a>
     <AnnouncementBar />
-    <div class:list={['top bg-cyan qmark-band']}>
-      <span class:list={['qmark', { 'qmark--big': bigQmark }]} aria-hidden="true">?</span>
+    <div class:list={['top', calmTop ? 'top--calm' : 'bg-cyan qmark-band']}>
+      {!calmTop && <span class:list={['qmark', { 'qmark--big': bigQmark }]} aria-hidden="true">?</span>}
       <Header />
       <slot name="hero" />
     </div>
